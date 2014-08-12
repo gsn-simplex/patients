@@ -3,4 +3,4 @@ Testing Repository
 
 For deployment testing purposes, and Chef testing.
 
-![Cake Power](https://raw.github.com/cakephp/cakephp/master/lib/Cake/Console/Templates/skel/webroot/img/cake.power.gif)
+![GSN](https://avatars1.githubusercontent.com/u/8045464?v=2&s=200)
