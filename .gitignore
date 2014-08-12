@@ -1,0 +1,27 @@
+# User specific & automatically generated files #
+#################################################
+AWS_rootkey.csv
+AWS_maikelkey.csv
+/app/tmp/cache/*
+/app/tmp/logs/*
+/app/tmp/sessions/*
+/app/tmp/tests/*
+/lib/Cake/Console/Templates/skel/tmp/
+/vendors
+*.mo
+
+# IDE and editor specific files #
+#################################
+/nbproject
+.idea
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
