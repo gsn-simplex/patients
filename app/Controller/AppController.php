@@ -43,7 +43,6 @@ class AppController extends Controller {
 		parent::beforeFilter();
 
 		pr($_SERVER['SERVER_ADDR']);
-		pr($_SERVER['SERVER_NAME']);
 
 		// Handle .ext requests with a dedicated view
 		if($this->RequestHandler->ext == 'json') {
