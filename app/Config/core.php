@@ -369,16 +369,6 @@ if (Configure::read('debug') > 0) {
 // Prefix each application on the same server with a different string, to avoid Memcache and APC conflicts.
 $prefix = 'patients_';
 
-Cache::config('defaultcache', array(
-	'engine' => 'File', //[required]
-	'duration'=> 10, //[optional]
-	'probability'=> 100, //[optional]
-	'path' => CACHE . 'file', //[optional] use system tmp directory - remember to use absolute path
-	'prefix' => $prefix, //[optional]  prefix every cache file with this string
-	'lock' => false, //[optional]  use file locking
-	'serialize' => true, // [optional]
-));
-
 if($_SERVER['APPLICATION_ENV'] == 'production'){
 	require_once('../../opsworks.php');
 	$owdata	= new OpsWorks();
@@ -394,6 +384,16 @@ if($_SERVER['APPLICATION_ENV'] == 'production'){
 		'persistent' => true, // [optional] set this to false for non-persistent connections
 		'compress' => false, // [optional] compress data in Memcache (slower, but uses less memory)
 		'serialize' => true
+	));
+} else {
+	Cache::config('defaultcache', array(
+		'engine' => 'File', //[required]
+		'duration'=> 10, //[optional]
+		'probability'=> 100, //[optional]
+		'path' => CACHE . 'file', //[optional] use system tmp directory - remember to use absolute path
+		'prefix' => $prefix, //[optional]  prefix every cache file with this string
+		'lock' => false, //[optional]  use file locking
+		'serialize' => true, // [optional]
 	));
 }
 
