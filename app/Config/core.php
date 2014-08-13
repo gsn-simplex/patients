@@ -383,7 +383,7 @@ if($_SERVER['APPLICATION_ENV'] == 'production'){
 		), //[optional]
 		'persistent' => true, // [optional] set this to false for non-persistent connections
 		'compress' => false, // [optional] compress data in Memcache (slower, but uses less memory)
-		'serialize' => true
+		'serialize' => 'json'
 	));
 } else {
 	Cache::config('defaultcache', array(
