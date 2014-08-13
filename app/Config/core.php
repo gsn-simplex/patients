@@ -360,8 +360,44 @@ if (Configure::read('debug') > 0) {
 	$duration = '+10 seconds';
 }
 
+
+/**
+ * @Maikel; Memcached and file caching tests
+ * 
+ */
+
 // Prefix each application on the same server with a different string, to avoid Memcache and APC conflicts.
-$prefix = 'mynewsitemaikel_';
+$prefix = 'patients_';
+
+Cache::config('defaultcache', array(
+	'engine' => 'File', //[required]
+	'duration'=> 10, //[optional]
+	'probability'=> 100, //[optional]
+	'path' => CACHE . 'file', //[optional] use system tmp directory - remember to use absolute path
+	'prefix' => $prefix, //[optional]  prefix every cache file with this string
+	'lock' => false, //[optional]  use file locking
+	'serialize' => true, // [optional]
+));
+
+if($_SERVER['APPLICATION_ENV'] == 'production'){
+	require_once('../../opsworks.php');
+	$owdata	= new OpsWorks();
+
+	Cache::config('defaultcache', array(
+		'engine' => 'Memcached', //[required]
+		'duration' => 10, //[optional]
+		'probability' => 100, //[optional]
+		'prefix' => Inflector::slug(APP_DIR) . '_', //[optional]  prefix every cache file with this string
+		'servers' => array(
+			$owdata->memcached->host.':'.$owdata->memcached->port // localhost, default port 11211
+		), //[optional]
+		'persistent' => true, // [optional] set this to false for non-persistent connections
+		'compress' => false, // [optional] compress data in Memcache (slower, but uses less memory)
+		'serialize' => true
+	));
+}
+
+
 
 /**
  * Configure the cache used for general framework caching. Path information,
