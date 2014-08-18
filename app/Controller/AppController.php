@@ -44,6 +44,7 @@ class AppController extends Controller {
 
 		pr($_SERVER['SERVER_ADDR']);
 		pr('CakePHP v'.Configure::version());
+		pr('hallo GSN!');
 
 		// Handle .ext requests with a dedicated view
 		if($this->RequestHandler->ext == 'json') {
