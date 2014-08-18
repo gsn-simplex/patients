@@ -42,8 +42,8 @@ class AppController extends Controller {
 		// First execute the parents' beforeFilter
 		parent::beforeFilter();
 
-		pr($_SERVER['SERVER_ADDR']);
-		pr('CakePHP v'.Configure::version());
+		// pr($_SERVER['SERVER_ADDR']);
+		// pr('CakePHP v'.Configure::version());
 
 		// Handle .ext requests with a dedicated view
 		if($this->RequestHandler->ext == 'json') {

@@ -5,16 +5,9 @@
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('firstname'); ?></th>
 			<th><?php echo $this->Paginator->sort('lastname'); ?></th>
-			<th><?php echo $this->Paginator->sort('street'); ?></th>
-			<th><?php echo $this->Paginator->sort('housenumber'); ?></th>
-			<th><?php echo $this->Paginator->sort('housenumber_addition'); ?></th>
 			<th><?php echo $this->Paginator->sort('zipcode'); ?></th>
-			<th><?php echo $this->Paginator->sort('city'); ?></th>
-			<th><?php echo $this->Paginator->sort('country'); ?></th>
 			<th><?php echo $this->Paginator->sort('email'); ?></th>
 			<th><?php echo $this->Paginator->sort('birthday'); ?></th>
-			<th><?php echo $this->Paginator->sort('created'); ?></th>
-			<th><?php echo $this->Paginator->sort('modified'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	<?php foreach ($patients as $patient): ?>
@@ -22,20 +15,13 @@
 		<td><?php echo h($patient['Patient']['id']); ?>&nbsp;</td>
 		<td><?php echo h($patient['Patient']['firstname']); ?>&nbsp;</td>
 		<td><?php echo h($patient['Patient']['lastname']); ?>&nbsp;</td>
-		<td><?php echo h($patient['Patient']['street']); ?>&nbsp;</td>
-		<td><?php echo h($patient['Patient']['housenumber']); ?>&nbsp;</td>
-		<td><?php echo h($patient['Patient']['housenumber_addition']); ?>&nbsp;</td>
 		<td><?php echo h($patient['Patient']['zipcode']); ?>&nbsp;</td>
-		<td><?php echo h($patient['Patient']['city']); ?>&nbsp;</td>
-		<td><?php echo h($patient['Patient']['country']); ?>&nbsp;</td>
 		<td><?php echo h($patient['Patient']['email']); ?>&nbsp;</td>
 		<td><?php echo h($patient['Patient']['birthday']); ?>&nbsp;</td>
-		<td><?php echo h($patient['Patient']['created']); ?>&nbsp;</td>
-		<td><?php echo h($patient['Patient']['modified']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $patient['Patient']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $patient['Patient']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $patient['Patient']['id']), null, __('Are you sure you want to delete # %s?', $patient['Patient']['id'])); ?>
+			<?php echo $this->Html->link("", array('action' => 'view', $patient['Patient']['id']), array("class" => "glyphicon glyphicon-eye-open btn")); ?>
+			<?php echo $this->Html->link("", array('action' => 'edit', $patient['Patient']['id']), array("class" => "glyphicon glyphicon-pencil btn")); ?>
+			<?php echo $this->Form->postLink("", array('action' => 'delete', $patient['Patient']['id']), array("class" => "glyphicon glyphicon-remove btn btn-danger"), __('Are you sure you want to delete # %s?', $patient['Patient']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>

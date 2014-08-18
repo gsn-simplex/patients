@@ -40,7 +40,7 @@ $cakeDescription = __d('cake_dev', 'Test Project with Modules');
 <body>
 	<div id="container">
 		<div id="header">
-			<h1><?php echo $this->Html->link($cakeDescription, '/'); ?></h1>
+			<h1><?php echo $this->Html->link($cakeDescription, '/'); ?> on server <b><?php echo $_SERVER['SERVER_ADDR']; ?></b></h1>
 		</div>
 		<div id="content">
 
