@@ -39,8 +39,6 @@ $cakeDescription = __d('cake_dev', 'Test Project with Modules');
 </head>
 <body>
 	<div id="container">
-		Test text
-		Hallo
 		<div id="header">
 			<h1><?php echo $this->Html->link($cakeDescription, '/'); ?> on server <b><?php echo $_SERVER['SERVER_ADDR']; ?></b></h1>
 		</div>

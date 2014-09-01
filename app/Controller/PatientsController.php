@@ -9,6 +9,10 @@ App::uses('AppController', 'Controller');
  */
 class PatientsController extends AppController {
 
+	function test2(){
+		echo 'hallo';
+	}
+
 /**
  * Components
  *
