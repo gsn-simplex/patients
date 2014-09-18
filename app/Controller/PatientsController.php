@@ -13,21 +13,41 @@ class PatientsController extends AppController {
 
 		// Find all patients, cache results in cachekey 'patientlist'
 		$output = $this->Patient->find('all', array(
-			'cache' => 'patientlist',
+			'cache' => 'patient_all',
 			'cacheConfig' => 'defaultcache',
 			'cacheDebug' => true
 		));
 
 		// Find first patient, cache results in cachekey 'patientlist'
 		$output = $this->Patient->find('all', array(
-			'cache' => 'patientlist',
+			'cache' => 'patient_all',
 			'cacheConfig' => 'defaultcache',
 			'cacheDebug' => true
 		));
 
-		// Setting and _serializing output to force parsing the JSON extension
-		$this->set('output', $output);
-		$this->set('_serialize', 'output');
+		// Find first patient, cache results in cachekey 'patientlist'
+		$output = $this->Patient->find('first', array(
+			'cache' => 'patient_first',
+			'cacheConfig' => 'defaultcache',
+			'cacheDebug' => true
+		));
+
+		// Find first patient, cache results in cachekey 'patientlist'
+		$output = $this->Patient->find('first', array(
+			'cache' => 'patient_first',
+			'cacheConfig' => 'defaultcache',
+			'cacheDebug' => true
+		));
+
+		// Find first patient, cache results in cachekey 'patientlist'
+		$output = $this->Patient->find('first', array(
+			'cache' => 'patient_first',
+			'cacheConfig' => 'defaultcache',
+			'cacheDebug' => true
+		));
+
+		$queryLog = $this->Patient->getDataSource()->getLog();
+		$this->set(compact('queryLog'));
 	}
 
 	public function bench(){

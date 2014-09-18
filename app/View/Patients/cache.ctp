@@ -1,0 +1,1 @@
+<h2><?php echo $queryLog['count']; ?> Queries ran</h2>
