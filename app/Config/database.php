@@ -19,11 +19,7 @@ class DATABASE_CONFIG {
 		'encoding'   => 'utf8',
 	);
 
-	public $amazon = array();
-	public $vriendenagenda = array();
-
 	public function __construct() {
 		$this->default = array_merge($this->default, Configure::read('App.database'));
-		$this->amazon = array_merge($this->default, Configure::read('App.amazondatabase'));
 	}
 }
