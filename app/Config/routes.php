@@ -34,6 +34,10 @@ Router::connect('/helpertest', array('controller' => 'app', 'action' => 'helpert
 
 Router::connect('/test2', array('controller' => 'patients', 'action' => 'test2'));
 
+// benchmark
+Router::connect('/bench', array('controller' => 'patients', 'action' => 'bench'));
+Router::connect('/cache', array('controller' => 'patients', 'action' => 'cache'));
+
 /**
 * ...and connect the rest of 'Pages' controller's URLs.
 */

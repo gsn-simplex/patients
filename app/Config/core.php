@@ -363,7 +363,7 @@ if (Configure::read('debug') > 0) {
 
 /**
  * @Maikel; Memcached and file caching tests
- * 
+ *
  */
 
 // Prefix each application on the same server with a different string, to avoid Memcache and APC conflicts.

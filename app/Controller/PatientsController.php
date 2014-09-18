@@ -9,6 +9,52 @@ App::uses('AppController', 'Controller');
  */
 class PatientsController extends AppController {
 
+	public function cache(){
+
+		// Find all patients, cache results in cachekey 'patientlist'
+		$output = $this->Patient->find('all', array(
+			'cache' => 'patientlist',
+			'cacheConfig' => 'defaultcache',
+			'cacheDebug' => true
+		));
+
+		// Find first patient, cache results in cachekey 'patientlist'
+		$output = $this->Patient->find('all', array(
+			'cache' => 'patientlist',
+			'cacheConfig' => 'defaultcache',
+			'cacheDebug' => true
+		));
+
+		// Setting and _serializing output to force parsing the JSON extension
+		$this->set('output', $output);
+		$this->set('_serialize', 'output');
+	}
+
+	public function bench(){
+
+		/// ------- Change DB to amazon
+		$this->Patient->setDataSource('amazon');
+		/// -------
+		///
+		$tic = microtime(true);
+		pr('Amazon: ' .count($this->Patient->find('all')));
+		$toc = microtime(true);
+
+		$time = ($toc - $tic) * 100;
+		pr($time.' ms');
+
+		/// ------- Change DB to default
+		$this->Patient->setDataSource('default');
+		/// -------
+		///
+		$tic = microtime(true);
+		pr('Local DB: '. count($this->Patient->find('all')));
+		$toc = microtime(true);
+
+		$time = ($toc - $tic) * 100;
+		pr($time.' ms');
+	}
+
 	function test2(){
 		echo 'hallo';
 	}
