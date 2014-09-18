@@ -29,7 +29,6 @@ Router::parseExtensions('json', 'xml');
 */
 
 Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
-Router::connect('/amazon', array('controller' => 'pages', 'action' => 'amazon'));
 Router::connect('/helpertest', array('controller' => 'app', 'action' => 'helpertest'));
 
 Router::connect('/test2', array('controller' => 'patients', 'action' => 'test2'));
