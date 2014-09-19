@@ -9,6 +9,42 @@ App::uses('AppController', 'Controller');
  */
 class PatientsController extends AppController {
 
+	public function bench(){
+		/**
+		 * Query the same query 1000 times and see how many hits the DB gets and the amount of time it takes
+		 */
+		if(isset($this->request->params['type'])){
+			$type = $this->request->params['type'];
+		} else {
+			$type = 'nocache';
+		}
+
+		$iterations = 1000;
+
+		$startTime = microtime(true);
+		for($i=0; $i<=$iterations; $i++){
+			if($type == 'nocache'){
+				$output = $this->Patient->find('all');
+			} elseif($type == 'memcached'){
+				$output = $this->Patient->find('all', array(
+					'cache' => 'patient_all',
+					'cacheConfig' => 'defaultcache',
+					// 'cacheDebug' => true
+				));
+			}
+		}
+		$endTime = microtime(true);
+
+		$timeElapsed = ($endTime - $startTime);
+		$avgTimePerQueryMS = ($timeElapsed / $iterations) * 1000;
+		$queryLog = $this->Patient->getDataSource()->getLog();
+
+		pr($iterations . ' queries took ' .  $timeElapsed. ' sec');
+		pr('Query average: ' . $avgTimePerQueryMS . ' ms');
+		pr('Queries ran on DB: '. $queryLog['count']);
+	}
+
+
 	public function cache(){
 
 		// Find all patients, cache results in cachekey 'patientlist'
@@ -48,31 +84,6 @@ class PatientsController extends AppController {
 
 		$queryLog = $this->Patient->getDataSource()->getLog();
 		$this->set(compact('queryLog'));
-	}
-
-	public function bench(){
-
-		/// ------- Change DB to amazon
-		$this->Patient->setDataSource('amazon');
-		/// -------
-		///
-		$tic = microtime(true);
-		pr('Amazon: ' .count($this->Patient->find('all')));
-		$toc = microtime(true);
-
-		$time = ($toc - $tic) * 100;
-		pr($time.' ms');
-
-		/// ------- Change DB to default
-		$this->Patient->setDataSource('default');
-		/// -------
-		///
-		$tic = microtime(true);
-		pr('Local DB: '. count($this->Patient->find('all')));
-		$toc = microtime(true);
-
-		$time = ($toc - $tic) * 100;
-		pr($time.' ms');
 	}
 
 	function test2(){
