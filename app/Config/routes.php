@@ -35,7 +35,7 @@ Router::connect('/test2', array('controller' => 'patients', 'action' => 'test2')
 
 // benchmark
 Router::connect('/bench', array('controller' => 'patients', 'action' => 'bench'));
-Router::connect('/bench/:type', array('controller' => 'patients', 'action' => 'bench'));
+Router::connect('/bench/:iterations/:type/:cacheduration', array('controller' => 'patients', 'action' => 'bench'));
 
 
 Router::connect('/cache', array('controller' => 'patients', 'action' => 'cache'));

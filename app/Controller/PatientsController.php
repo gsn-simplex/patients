@@ -13,13 +13,26 @@ class PatientsController extends AppController {
 		/**
 		 * Query the same query 1000 times and see how many hits the DB gets and the amount of time it takes
 		 */
+		// http://54.72.119.149/bench/50000/nocache/1
+		// http://54.72.119.149/bench/50000/memcached/1
+		// http://54.72.119.149/bench/50000/memcached/10
+
 		if(isset($this->request->params['type'])){
 			$type = $this->request->params['type'];
 		} else {
 			$type = 'nocache';
 		}
 
-		$iterations = 1000;
+		if(isset($this->request->params['iterations'])){
+			$iterations = $this->request->params['iterations'];
+		} else {
+			$iterations = 1000;
+		}
+
+		if(isset($this->request->params['cacheduration'])){
+			$cacheduration = $this->request->params['cacheduration'];
+			cache::config('defaultcache', array('duration' => 1));
+		}
 
 		$startTime = microtime(true);
 		for($i=0; $i<=$iterations; $i++){
