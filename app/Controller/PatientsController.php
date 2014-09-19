@@ -31,7 +31,7 @@ class PatientsController extends AppController {
 
 		if(isset($this->request->params['cacheduration'])){
 			$cacheduration = $this->request->params['cacheduration'];
-			cache::config('defaultcache', array('duration' => 1));
+			cache::config('defaultcache', array('duration' => $cacheduration));
 		}
 
 		$startTime = microtime(true);
